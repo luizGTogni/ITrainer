@@ -20,6 +20,7 @@ interface ChallengesContextData {
   resetChallenge: () => void;
   completeChallenge: () => void;
   closeLevelUpModal: () => void;
+  handleNotifyMe: () => void;
 }
 
 interface ChallengesProviderProps {
@@ -41,9 +42,9 @@ export function ChallengesProvider({ children, ...rest }: ChallengesProviderProp
 
   const experienceToNextLevel = Math.pow((level + 1) * 4, 2);
 
-  useEffect(() => {
-    Notification.requestPermission();                     
-  }, []);
+  function handleNotifyMe() {
+    Notification.requestPermission();
+  }
 
   useEffect(() => {
     Cookies.set('level', String(level));
@@ -68,7 +69,7 @@ export function ChallengesProvider({ children, ...rest }: ChallengesProviderProp
 
     new Audio('/notification.mp3').play();
 
-    if (Notification.permission == 'granted') {
+    if (Notification.permission === 'granted') {
       new Notification('Novo desafio 🏅', {
         body: `Valendo ${challenge.amount}xp!`,
         icon: `icons/level-up.svg`,
@@ -112,6 +113,7 @@ export function ChallengesProvider({ children, ...rest }: ChallengesProviderProp
         resetChallenge,
         completeChallenge,
         closeLevelUpModal,
+        handleNotifyMe,
       }}>
       {children}
       { isLevelUpModal && <LevelUpModal />}
