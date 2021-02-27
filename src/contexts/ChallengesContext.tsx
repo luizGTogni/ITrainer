@@ -43,7 +43,7 @@ export function ChallengesProvider({ children, ...rest }: ChallengesProviderProp
   const experienceToNextLevel = Math.pow((level + 1) * 4, 2);
 
   function handleNotifyMe() {
-    Notification.requestPermission();
+    // Notification.requestPermission();
   }
 
   useEffect(() => {
@@ -67,14 +67,14 @@ export function ChallengesProvider({ children, ...rest }: ChallengesProviderProp
 
     setActiveChallenge(challenge);
 
-    new Audio('/notification.mp3').play();
+    new Audio('/notification.mp3').play();;
 
-    if (Notification.permission === 'granted') {
+    /*if (Notification.permission === 'granted') {
       new Notification('Novo desafio 🏅', {
         body: `Valendo ${challenge.amount}xp!`,
         icon: `icons/level-up.svg`,
       });
-    }
+    }*/
   }
 
   function resetChallenge() {
