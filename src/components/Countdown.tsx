@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { MdCheckCircle } from 'react-icons/md';
+import { MdCheckCircle, MdPlayArrow, MdClose } from 'react-icons/md';
 import { CountdownContext } from '../contexts/CountdownContext';
 
 import styles from '../styles/components/Countdown.module.css';
@@ -10,6 +10,7 @@ export function Countdown() {
     seconds,
     hasFinished, 
     isActive, 
+    percentToTimeCountdown,
     startCountdown, 
     resetCountdown, 
   } = useContext(CountdownContext);
@@ -37,7 +38,7 @@ export function Countdown() {
         className={styles.CountdownButton}
       >
         Ciclo encerrado
-        <MdCheckCircle size={20} />
+        <MdCheckCircle size={22} />
       </button>
       ) : (
         <>
@@ -48,6 +49,8 @@ export function Countdown() {
               onClick={resetCountdown}
             >
               Abandonar ciclo
+              <MdClose size={22} />
+              <div style={{ width: `${percentToTimeCountdown}%` }} />
             </button>
           ) : (
             <button 
@@ -56,6 +59,7 @@ export function Countdown() {
             onClick={startCountdown}
             >
             Iniciar um ciclo
+            <MdPlayArrow size={22} />
             </button>
           ) }
         </>

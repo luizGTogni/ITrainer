@@ -6,6 +6,7 @@ interface CountdownContextData {
   seconds: number;
   hasFinished: boolean;
   isActive: boolean;
+  percentToTimeCountdown: number;
   startCountdown: () => void;
   resetCountdown: () => void;
 }
@@ -22,12 +23,15 @@ export function CountdownProvider({ children }: CountdownProviderProps) {
   const { startNewChallenge, handleNotifyMe } = useContext(ChallengesContext);
 
   const [minute, setMinute] = useState(0.1);
-  const [time, setTime] = useState(minute * 60);
+  const [timeInitial, setTimeInitial] = useState(minute * 60);
+  const [timer, setTimer] = useState(0);
   const [isActive, setIsActive] = useState(false);
   const [hasFinished, setHasFinished] = useState(false);
 
-  const minutes = Math.floor(time / 60);
-  const seconds = time % 60;
+  const minutes = Math.floor(timeInitial / 60);
+  const seconds = timeInitial % 60;
+
+  const percentToTimeCountdown = Math.round((timer * 100)) / (minute * 60);
 
   function startCountdown() {
     handleNotifyMe();
@@ -38,20 +42,22 @@ export function CountdownProvider({ children }: CountdownProviderProps) {
     clearTimeout(countdownTimeout);
     setIsActive(false);
     setHasFinished(false);
-    setTime(minute * 60);
+    setTimeInitial(minute * 60);
+    setTimer(0);
   }
 
   useEffect(() => {
-    if (isActive && time > 0) {
+    if (isActive && timeInitial > 0) {
       countdownTimeout = setTimeout(() => {
-        setTime(time - 1);
+        setTimer(timer + 1);
+        setTimeInitial(timeInitial - 1);
       }, 1000)
-    } else if (isActive && time === 0) {
+    } else if (isActive && timeInitial === 0) {
       setHasFinished(true);
       setIsActive(false);
       startNewChallenge();
     }
-  }, [isActive, time])
+  }, [isActive, timeInitial])
 
   return (
     <CountdownContext.Provider value={{
@@ -59,6 +65,7 @@ export function CountdownProvider({ children }: CountdownProviderProps) {
       seconds,
       hasFinished,
       isActive,
+      percentToTimeCountdown,
       startCountdown,
       resetCountdown,
     }}>

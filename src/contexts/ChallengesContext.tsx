@@ -41,7 +41,7 @@ export function ChallengesProvider({ children, ...rest }: ChallengesProviderProp
   const [isLevelUpModal, setIsLevelUpModal] = useState(false);
 
   const experienceToNextLevel = Math.pow((level + 1) * 4, 2);
-
+  
   function handleNotifyMe() {
     // Notification.requestPermission();
   }
