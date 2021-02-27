@@ -3,7 +3,7 @@
 
 # ITrainer
 
-![Preview-Screens](https://github.com/steniowagner/mindCast/blob/master/screen.png)
+![Preview-Screens](https://github.com/luizGTogni/ITrainer/blob/main/screen.png)
 
 Se quiser ver ele online [clique aqui](https://moveit-next-teal.vercel.app/).
 
