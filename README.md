@@ -84,4 +84,4 @@ Conecte-se comigo no [LinkedIn](https://www.linkedin.com/in/luizgustavotogni/).
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/luizGTogni/ITrainer/blob/master/LICENSE) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/luizGTogni/ITrainer/blob/main/LICENSE) file for details
