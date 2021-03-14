@@ -40,7 +40,7 @@ Conecte-se comigo no [LinkedIn](https://www.linkedin.com/in/luizgustavotogni/).
 **Clonando o Repositorio**
 
 ```
-$ git clone https://github.com/luizGTogni/ITrainer
+$ git clone https://github.com/luizGTogni/ITrainer.git
 
 $ cd ITrainer
 ```
